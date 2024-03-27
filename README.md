@@ -7,6 +7,7 @@ create a role that can read secrets .Configure the access key & secret key of th
 
 ## run the code
 ### composer install
+### update AwsSecretManagerClient.php with aws keys and secret name
 ### php -S localhost:8000 
 ### open browser and access http://localhost:8000/AwsSecretManagerClient.php
 ### you will get response similar to {"TEST_SECRET":"SECRET_VAL"}
