@@ -9,7 +9,7 @@ $region = 'ap-southeast-2';
 
 $client = new SecretsManagerClient([
     'version' => 'latest',
-    'region'  => $region,
+    'region' => $region,
     /*
     for the actual code we will get this from env varibales 
 
@@ -17,7 +17,7 @@ $client = new SecretsManagerClient([
     $ export AWS_SECRET_ACCESS_KEY=xyz # The secret access key for your AWS account.
     */
     'credentials' => [
-        'key'    => 'ConfigureActualKey',
+        'key' => 'ConfigureActualKey',
         'secret' => 'ConfigureActualSecret',
     ],
 ]);
@@ -34,11 +34,13 @@ try {
     }
 } catch (AwsException $e) {
     $error = $e->getAwsErrorCode();
-    if ($error == 'DecryptionFailureException'
+    if (
+        $error == 'DecryptionFailureException'
         || $error == 'InternalServiceErrorException'
         || $error == 'InvalidParameterException'
         || $error == 'InvalidRequestException'
-        || $error == 'ResourceNotFoundException') {
+        || $error == 'ResourceNotFoundException'
+    ) {
         // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
         // Handle these errors.
     }
